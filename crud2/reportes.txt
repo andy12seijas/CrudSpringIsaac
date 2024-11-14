@@ -1,0 +1,10 @@
+=== Reporte de Usuarios ===
+
+ID: 7
+Nombre: andy2
+Apellido: seijas
+Edad: 20
+Nota: 20.0
+----------------------------
+
+Total de usuarios en el reporte: 1

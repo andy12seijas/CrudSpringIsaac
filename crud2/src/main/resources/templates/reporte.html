@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Gestión de Usuarios</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Body styling */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f7f7f9;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        /* Container styling */
+        .container {
+            display: flex;
+            width: 100%;
+            max-width: 1000px;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 20px;
+        }
+
+        /* Title styling */
+        h1 {
+            margin-bottom: 20px;
+            color: #4a90e2;
+        }
+
+        /* Welcome message styling */
+        .welcome-message {
+            margin-bottom: 20px;
+            font-size: 1.2em;
+            color: #4a90e2;
+            font-weight: bold;
+        }
+
+        /* Table styling */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: #fff;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #4a90e2;
+            color: white;
+            font-weight: bold;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        tr:hover {
+            background-color: #eaf3fc;
+        }
+
+        /* Form styling */
+        form {
+            background-color: #fff;
+            width: 100%;
+            max-width: 400px;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        label {
+            font-weight: bold;
+            color: #333;
+        }
+
+        input[type="text"],
+        input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0 20px 0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        input[type="submit"] {
+            width: 100%;
+            background-color: #4a90e2;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #357abd;
+        }
+
+        /* Save button styling */
+        .btn-save {
+            background-color: #28a745;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0px 4px 6px rgba(40, 167, 69, 0.3);
+        }
+
+        .btn-save:hover {
+            background-color: #218838;
+            box-shadow: 0px 6px 10px rgba(40, 167, 69, 0.4);
+        }
+                .btn-add {
+            margin-top: 20px;
+            background-color: #007bff;
+            padding: 8px 12px;
+            border-radius: 5px;
+            font-size: 14px;
+            transition: background-color 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0px 4px 6px rgba(0, 123, 255, 0.3);
+        }
+
+        .btn-add:hover {
+            background-color: #0056b3; /* Darker blue */
+            box-shadow: 0px 6px 10px rgba(0, 123, 255, 0.4);
+        }
+        .btn-back {
+    margin-top: 20px; /* Margen para separarlo del botón "Generar" */
+    background-color: #007bff;
+    color: white;
+    padding: 8px 12px;
+    border-radius: 5px;
+    font-size: 14px;
+    text-decoration: none;
+    display: inline-block;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0px 4px 6px rgba(0, 123, 255, 0.3);
+}
+
+.btn-back:hover {
+    background-color: #0056b3;
+    box-shadow: 0px 6px 10px rgba(0, 123, 255, 0.4);
+}
+.button-container {
+
+
+            right:30px;
+        }
+        .right-box {
+            position: absolute;
+            right: 1px; /* 10 píxeles del borde derecho */
+
+
+
+
+        }
+         .container2 {
+            position: relative;
+            width: 815px;
+            height: 815px;
+
+        }
+        .mensaje-confirmacion {
+            color: #28a745;
+            font-size: 1.1em;
+            margin-bottom: 15px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+<div th:if="${mensaje}" class="mensaje-confirmacion" th:text="${mensaje}"></div>
+
+<h1>Crear reporte</h1>
+
+
+<div class="container">
+
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Apellido</th>
+            <th>Edad</th>
+            <th>Nota</th>
+        </tr>
+        <tr th:each="usuario : ${usuarios}">
+            <td th:text="${usuario.id}"></td>
+            <td th:text="${usuario.nombre}"></td>
+            <td th:text="${usuario.apellido}"></td>
+            <td th:text="${usuario.edad}"></td>
+            <td th:text="${usuario.nota}"></td>
+        </tr>
+    </table>
+
+
+    <form action="#" th:action="@{/api/user/reporte}" th:object="${report}" method="post">
+        <label for="edad">Edad:</label>
+        <input type="text" id="edad" th:field="*{edad1}" required />
+        <label for="nota">Nota:</label>
+        <input type="text" id="nota" th:field="*{nota1}" required />
+        <input type="submit" class="btn-save" value="Generar" />
+    </form>
+
+
+</div>
+<div class="container2">
+    <div class="right-box">
+        <a href="/api/user/list" class="btn-back">Volver a la lista de usuarios</a>
+
+    </div>
+</div>
+
+</body>
+</html>

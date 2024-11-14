@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Inicio de Sesión</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #e0f7fa; /* Fondo azul claro */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .login-container {
+            background-color: #ffffff; /* Fondo blanco para el contenedor */
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            width: 350px;
+            transition: transform 0.3s;
+        }
+
+        .login-container:hover {
+            transform: translateY(-5px); /* Efecto de elevación al pasar el mouse */
+        }
+
+        h2 {
+            text-align: center;
+            color: #00796b; /* Verde oscuro */
+            margin-bottom: 20px;
+        }
+
+        label {
+            margin-top: 10px;
+            display: block;
+            color: #555;
+        }
+
+        input[type="text"],
+        input[type="password"] {
+            width: 90%; /* Ajuste del ancho para centrar */
+            padding: 12px;
+            margin: 5px auto 15px auto; /* Margen automático a los lados para centrar */
+            border: 1px solid #b2dfdb; /* Borde verde claro */
+            border-radius: 5px;
+            font-size: 14px;
+            transition: border-color 0.3s;
+            display: block; /* Asegura que se comporten como bloques */
+        }
+
+        input[type="text"]:focus,
+        input[type="password"]:focus {
+            border-color: #00796b; /* Borde verde oscuro al enfocar */
+            outline: none;
+        }
+
+        input[type="submit"] {
+            background-color: #00796b; /* Color verde oscuro */
+            color: white;
+            border: none;
+            padding: 12px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
+            width: 100%;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #004d40; /* Verde más oscuro al pasar el mouse */
+        }
+
+        .error-message {
+            color: red;
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        /* Enlace de recuperación de contraseña */
+        .forgot-password {
+            text-align: center;
+            margin-top: 15px;
+            color: #00796b; /* Color del enlace */
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        .forgot-password:hover {
+            text-decoration: underline; /* Subrayado al pasar el mouse */
+        }
+    </style>
+</head>
+<body>
+<div class="login-container">
+    <h2>Inicio de Sesión</h2>
+
+    <form action="#" th:action="@{/api/user/inicio}" th:object="${inicios}" method="post">
+        <label for="nombre">Nombre:</label>
+        <input type="text" id="nombre" th:field="*{nombre}" required />
+        <label for="contraseña">Contraseña:</label>
+        <input type="password" id="contraseña" th:field="*{contraseña}" required />
+        <input type="submit" class="btn-save" value="Iniciar" />
+    </form>
+    <div th:if="${errorMessage}" class="error-message">
+        <p th:text="${errorMessage}"></p>
+    </div>
+</div>
+
+</body>
+</html>
